@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="front:war exploded">
+    <output-path>$PROJECT_DIR$/../suibian-web/front/target/hello</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="front" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="suibian01-service-1.00.jar">
+            <element id="module-output" name="suibian01-service" />
+          </element>
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../suibian-web/front/target/hello/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="front/web/Web" />
+    </root>
+  </artifact>
+</component>

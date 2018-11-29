@@ -1,0 +1,9 @@
+a {
+    font-size: 0.8em;
+    text-decoration: none;
+    margin: 2em 1em;
+}
+
+div {
+    text-shadow: 2px 2px 5px gold;
+}

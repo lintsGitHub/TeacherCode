@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--定义一些可以复用的变量-->
+    <properties resource="jdbc.properties" />
+
+    <settings>
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+    </settings>
+
+    <!--设置别名，可以简化在 xml 中的完全限定名的使用-->
+    <typeAliases>
+        <package name="com.nf147.sss.entity" /> <!-- 可以跟 @Alias 结合使用 -->
+    </typeAliases>
+
+    <environments default="prod">
+        <environment id="prod">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="MySQL" value="mysql"/>
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="DB2" value="db2"/>
+        <property name="Oracle" value="oracle" />
+    </databaseIdProvider>
+
+    <!--指定映射器-->
+    <mappers>
+        <mapper resource="mapper/TwoMapper.xml" />
+    </mappers>
+</configuration>

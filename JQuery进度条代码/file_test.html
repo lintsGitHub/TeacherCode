@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+</head>
+<body>
+
+<div style="margin-bottom: 5em;">
+    <canvas id="mycanvas" width="300" height="200" style="border: 1px solid gray;"></canvas>
+    <button onclick="cancas_demo1()">点击我开始画</button>
+    <button onclick="canvas_setColor('green')">颜色设置为绿色</button>
+    <button onclick="canvas_setColor('red')">颜色设置为红色</button>
+</div>
+
+
+<input type="button" onclick="gofile()" value="提交"/>
+<input type="file" id="myfile" multiple="multiple"/>
+<div style="width: 3em">
+    <progress id="myprogress" style="width: 200px" value="0">进度条</progress>
+    <br>
+    <img src="" title="默认为空" id="myImg">
+</div>
+<br>
+
+<div>
+    <h3>music</h3>
+    <audio controls="controls" id="myMusic" src=""></audio>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script>
+
+    myfile.addEventListener("change", previewWithObjectURL);
+
+    var huabu;
+    function cancas_demo1() {
+        // 1. 获取画布对象
+        huabu = mycanvas.getContext("2d");
+        huabu.strokeRect(10, 10, 100, 100);
+        huabu.strokeStyle = "red";
+        huabu.strokeRect(20, 20, 80, 80);
+        huabu.strokeText( "您好", 80, 110 );
+
+        var w = 2;
+
+        mycanvas.onmousemove = function (ev) {
+            var x = ev.offsetX;
+            var y = ev.offsetY;
+            huabu.strokeRect(x, y, w, w);
+        };
+
+        console.log(huabu);
+    }
+    function canvas_setColor(colorName) {
+        huabu.strokeStyle = colorName;
+    }
+
+    function previewWithObjectURL() {
+        var target = event.target.files[0];
+        var url = URL.createObjectURL(target);
+        myMusic.src = url;
+        myMusic.play();
+        console.log(url);
+    }
+
+    function previewWithDataURL () {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onloadend = function (event) {
+            console.log(event.target.result);
+            var musicController = document.getElementById("myMusic");
+            musicController.src = event.target.result;
+            musicController.play();
+        };
+        reader.onprogress = function (event) {
+            if (event.lengthComputable) {
+                document.getElementById("myprogress").value = event.loaded / event.total;
+            }
+        };
+    }
+
+    function gofile() {
+        console.log("das");
+        $.ajax({
+            url: "xxxa"
+            , method: "post"
+            , cache: false
+            , contentType: "multipart/form-data"
+            , data: document.getElementById("myfile").files[0]
+            , processData: false
+            , xhr: function () {
+                console.log("das");
+                var myXhr = $.ajaxSettings.xhr();
+                console.log(myXhr.upload);
+                if(myXhr.upload){
+                    console.log(myXhr);
+                    myXhr.upload.addEventListener("progress",function (even) {
+                        console.log(even);
+                    },false);
+                }
+                return myXhr;
+            }
+        })
+    }
+
+    function testXHR() {
+        var aaa = 32323;
+        var request = new XMLHttpRequest();
+        request.open("get", "/ksjfksjdfksdjkfj", true);
+        request.send(new FormData()); // 异步操作，这句我不等待
+        request.onreadystatechange;
+        request.onload;
+        request.onerror;
+        request.onloadstart;
+        request.onabort;
+        request.onprogress;
+        request.ontimeout;
+        request.upload.onprogress;
+        request.upload.onload;
+
+    }
+</script>
+
+</body>
+</html>

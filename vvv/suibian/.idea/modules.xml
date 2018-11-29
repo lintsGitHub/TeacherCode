@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../suibian-web/admin/admin.iml" filepath="$PROJECT_DIR$/../suibian-web/admin/admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../suibian-web/front/front.iml" filepath="$PROJECT_DIR$/../suibian-web/front/front.iml" />
+      <module fileurl="file://$PROJECT_DIR$/suibian01.iml" filepath="$PROJECT_DIR$/suibian01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../suibian-service/suibian01 (1).iml" filepath="$PROJECT_DIR$/../suibian-service/suibian01 (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/../suibian-web/suibian01 (2).iml" filepath="$PROJECT_DIR$/../suibian-web/suibian01 (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/../suibian-service/suibian01-service.iml" filepath="$PROJECT_DIR$/../suibian-service/suibian01-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../suibian-web/suibian01-web.iml" filepath="$PROJECT_DIR$/../suibian-web/suibian01-web.iml" />
+    </modules>
+  </component>
+</project>

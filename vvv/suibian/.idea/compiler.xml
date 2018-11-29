@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="admin" />
+        <module name="front" />
+        <module name="suibian01 (1)" />
+        <module name="suibian01 (2)" />
+        <module name="suibian01-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admin" target="1.5" />
+      <module name="front" target="1.7" />
+      <module name="suibian01" target="1.7" />
+      <module name="suibian01 (1)" target="1.5" />
+      <module name="suibian01 (2)" target="1.5" />
+      <module name="suibian01-service" target="1.7" />
+      <module name="suibian01-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

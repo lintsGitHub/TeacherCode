@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<fruits>
+
+    <fruit name="apple" class="fruit.Apple"/>
+
+    <fruit name="Banana" class="fruit.Banana"/>
+
+</fruits>

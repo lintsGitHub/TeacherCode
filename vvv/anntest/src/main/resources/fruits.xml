@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+
+    <bean id="apple" class="com.nf147.fruit.Apple"/>
+
+    <bean id="banana" class="com.nf147.fruit.Banana"/>
+
+    <bean id="pear" class="com.nf147.fruit.Pear"/>
+
+</beans>

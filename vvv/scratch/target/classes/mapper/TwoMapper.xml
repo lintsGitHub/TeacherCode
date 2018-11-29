@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nf147.sss.dao.CommonDAO">
+
+    <sql id="sql1"></sql>
+
+
+    <resultMap id="rmAuthor" type="author">
+        <!--<id property="id" column="id" />-->
+        <!--<result property="name" column="name" />-->
+        <result property="city" column="chengshi" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="rmAuthor">
+        select
+          id,
+          name,
+          chengshi
+        from sss_author
+    </select>
+
+    <resultMap id="rmBlog" type="blog">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+
+        <!--has One-->
+        <!--两种方式，nested select-->
+        <!--<association property="author" javaType="author"-->
+            <!--column="aid" select="com.nf147.sss.dao.CommonDAO.selectAuthorById" />-->
+
+        <association property="author" javaType="author" columnPrefix="author_" resultMap="a2" />
+
+        <collection property="comments" ofType="comment" columnPrefix="comment_">
+            <id property="id" column="id" />
+            <result property="body" column="body" />
+        </collection>
+    </resultMap>
+
+    <resultMap id="a2" type="author">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="city" column="city" />
+    </resultMap>
+
+    <select id="selectAuthorById" resultType="author">
+        select id, name, city from sss_author where id=#{id}
+    </select>
+
+    <select id="selectBlogs" resultMap="rmBlog">
+        select
+          b.id         as id,
+          b.title      as title,
+          b.content    as content,
+          a.id         as author_id,
+          a.name       as author_name,
+          a.city       as author_city,
+          c.id         as comment_id,
+          c.body       as comment_body
+        from
+          sss_blog b
+          left join sss_author a on b.author_id = a.id
+          left join sss_comment c on c.blog_id = b.id
+    </select>
+
+
+    <insert id="insertAuthor" useGeneratedKeys="false" keyProperty="id" keyColumn="id">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select floor(rand()*1000)
+        </selectKey>
+        insert into sss_author (id, name, city) values (#{id}, #{name}, #{city})
+    </insert>
+    <update id="updateBlog">
+        update sss_blog set content = #{content} where id = #{id}
+    </update>
+    <update id="updateBlog2" parameterType="blog" databaseId="oracle">
+        update sss_blog set content = #{content} where id = #{id} and 1=1
+    </update>
+    <update id="updateBlog2" parameterType="blog" databaseId="mysql">
+        update sss_blog set content = #{content} where id = #{id}
+    </update>
+    <update id="updateBlog3" statementType="CALLABLE">
+        update sss_blog set content = #{content} where id = #{id}
+    </update>
+    <delete id="ddd" />
+</mapper>

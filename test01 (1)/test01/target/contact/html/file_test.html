@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas + ajax</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <div>
+        <input type="file" id="myfile"> <!-- 选择文件后，要预览 -->
+    </div>
+    <div>
+        <img src="" id="myimg" title="暂时没有上传"/>
+    </div>
+    <div>
+        <button class="btn btn-primary" onclick="shangchuantupian()">上传图片</button>
+    </div>
+    <canvas id="mycanvas"></canvas>
+</div>
+
+
+<script>
+
+    myfile.onchange = function () {
+        var imgUrl = URL.createObjectURL(myfile.files[0]);
+        console.log("原来的大小", myfile.files[0].size);
+        console.log("得到的 url:", imgUrl);
+        myimg.src = imgUrl;
+        myimg.onload = () => URL.revokeObjectURL(imgUrl);
+    };
+
+    function shangchuantupian() {
+        var ctx = mycanvas.getContext('2d');
+        mycanvas.width = myimg.width / 2;
+        mycanvas.height = myimg.height / 2;
+        ctx.drawImage(myimg, 0, 0, myimg.width / 2, myimg.height / 2);
+        ctx.fillText("nf147", myimg.width / 2 - 20, myimg.height / 2 - 20);
+        mycanvas.toBlob(uploadWithAJAX, "image/jpeg");
+    }
+
+    function uploadWithAJAX(blob) {
+        var fd = new FormData();
+        fd.append("fff", blob);
+
+        fetch("/myupload", {
+            method: 'post',
+            body: fd
+        }).then(resp => resp.body);
+    }
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

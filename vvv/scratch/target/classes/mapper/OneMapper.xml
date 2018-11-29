@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nf147.sss.dao.CommonDAO">
+    <select id="findById" resultType="author">
+        select id, name, city from sss_author where id=#{id}
+    </select>
+
+    <select id="findByName" resultType="author">
+        select id, name, city from sss_author where name like #{name}
+    </select>
+
+    <select id="findByNameAndCity" resultType="author">
+        select id, name, city from sss_author where name = '${name}' and city = #{city}
+    </select>
+
+    <select id="findAll" resultType="author">
+        select id, name, city from sss_author
+    </select>
+    <select id="findAllIdBiggerThan" resultType="author">
+        select id, name, city from sss_author where id > #{id}
+    </select>
+    <select id="findAllLimit" resultType="author">
+        select id, name, city from sss_author limit #{id}
+    </select>
+
+    <delete id="delOne">
+        delete from sss_author where id = #{id}
+    </delete>
+
+    <delete id="delTwo">
+        delete from ${tablename} where id = #{id}
+    </delete>
+
+    <delete id="delThree">
+        ${st} where id = #{id}
+    </delete>
+</mapper>
