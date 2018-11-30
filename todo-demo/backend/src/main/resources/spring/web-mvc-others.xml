@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--国际化-->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages/xxxx"/>
+        <property name="defaultEncoding" value="GBK"/>
+    </bean>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale"
+                  value="zh"/> <!--当通过 Accept-Language 自动确定 Locale 的方式已经满足不了你，那么你需要试试注册一个 LocaleResolver 来制定 Locale 策略-->
+    </bean>
+
+    <!--主题切换-->
+    <bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
+        <property name="basenamePrefix" value="themes."/> <!-- 哪个文件夹里 -->
+    </bean>
+    <bean id="themeResolver" class="org.springframework.web.servlet.theme.SessionThemeResolver">
+        <property name="defaultThemeName" value="girl"/> <!-- 默认主题文件的名字是 "可爱的小粉红"，如果不设置，名为 theme -->
+    </bean>
+
+    <!--配置全局跨域规则-->
+    <mvc:cors>
+        <mvc:mapping path="/xxx"
+                     allowed-origins="http://localhost:7070"
+                     allowed-methods="GET, POST"
+                     allowed-headers="Accept-Charset, Accept, Content-Type"
+                     allow-credentials="true"/>
+        <mvc:mapping path="/yyy/*"
+                     allowed-origins="*"
+                     allowed-methods="*"
+                     allowed-headers="*"/>
+    </mvc:cors>
+</beans>

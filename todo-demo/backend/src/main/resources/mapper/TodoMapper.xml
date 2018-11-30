@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.todo.mapper.TodoMapper">
+
+  <select id="getTodos" resultType="todo">
+    select * from todo
+  </select>
+
+  <insert id="addTodo">
+    insert into todo (
+      name, detail
+    ) values (
+      #{name}, #{detail}
+    )
+  </insert>
+
+  <delete id="deleteTodo">
+    delete from todo where id=#{id}
+  </delete>
+
+  <update id="makeDone">
+    update todo set state='done' where id=#{id}
+  </update>
+
+  <update id="makeCancle">
+    update todo set state='cancle' where id=#{id}
+  </update>
+</mapper>
