@@ -31,7 +31,5 @@
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
-    <!--引入其他的配置-->
-    <import resource="web-mvc-others.xml" />
 
 </beans>
