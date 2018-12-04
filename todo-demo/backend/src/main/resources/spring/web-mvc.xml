@@ -9,10 +9,21 @@
     <context:component-scan base-package="com.nf147.todo.controller"/>
 
     <!--启用 mvc 的常用注解-->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
 
     <!--将所有的静态资源交还 Servlet 处理-->
     <mvc:default-servlet-handler/>
+
+
+
 
     <!--配置返回页面-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

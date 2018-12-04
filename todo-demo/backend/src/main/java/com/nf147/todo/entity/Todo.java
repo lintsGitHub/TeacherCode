@@ -1,11 +1,17 @@
 package com.nf147.todo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class Todo {
     private int id;
     private String name;
     private String detail;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt;
     private Date finishedAt;
     private String state;
@@ -40,7 +46,7 @@ public class Todo {
     }
 
     public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+       this.createdAt = createdAt;
     }
 
     public Date getFinishedAt() {

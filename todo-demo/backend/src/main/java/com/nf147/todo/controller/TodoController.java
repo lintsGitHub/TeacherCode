@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/todo")
 @CrossOrigin
 public class TodoController {
 
@@ -23,7 +22,8 @@ public class TodoController {
 
     @RequestMapping(method = RequestMethod.POST)
     public List<Todo> add (@RequestBody Todo todo) {
-        return todoServic.addTodo(todo);
+        todoServic.addTodo(todo);
+        return this.home();
     }
 
 //    修改状态的方法
@@ -43,6 +43,11 @@ public class TodoController {
     public List<Todo> delete(@RequestBody Todo todo){
         todoServic.deleteTodo(todo);
         return this.home();
+    }
+
+    @RequestMapping("/aa")
+    public String aa(){
+        return "天秀露娜";
     }
 }
 

@@ -3,9 +3,10 @@ package com.nf147.todo.service;
 import com.nf147.todo.entity.Todo;
 import com.nf147.todo.mapper.TodoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class TodoServic {
     @Autowired
     private TodoMapper todoMapper;
@@ -14,7 +15,7 @@ public class TodoServic {
         return todoMapper.getTodos();
     }
 
-    public List<Todo> addTodo(Todo todo) {
+    public int addTodo(Todo todo) {
         return todoMapper.addTodo(todo);
     }
 

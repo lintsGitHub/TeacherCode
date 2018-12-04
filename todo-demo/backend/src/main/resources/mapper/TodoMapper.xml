@@ -7,11 +7,7 @@
   </select>
 
   <insert id="addTodo">
-    insert into todo (
-      name, detail
-    ) values (
-      #{name}, #{detail}
-    )
+    insert into todo (name,detail,state,memo) values (#{name},#{detail},#{state},#{memo})
   </insert>
 
   <delete id="deleteTodo">
