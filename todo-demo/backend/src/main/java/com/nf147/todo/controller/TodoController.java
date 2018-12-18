@@ -1,9 +1,9 @@
 package com.nf147.todo.controller;
 
 import com.nf147.todo.entity.Todo;
-import com.nf147.todo.mapper.TodoMapper;
 import com.nf147.todo.service.TodoServic;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,11 +43,6 @@ public class TodoController {
     public List<Todo> delete(@RequestBody Todo todo){
         todoServic.deleteTodo(todo);
         return this.home();
-    }
-
-    @RequestMapping("/aa")
-    public String aa(){
-        return "天秀露娜";
     }
 }
 

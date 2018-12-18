@@ -8,4 +8,6 @@
     <context:component-scan base-package="com.nf147.todo">
     </context:component-scan>
 
+    <bean class="com.nf147.todo.vo.MyBeanPostProcessor"/>
+
 </beans>
